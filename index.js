@@ -18,7 +18,7 @@ Practice accessing data by console.log-ing the following pieces of data note, yo
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use getFinals to do the following:
-1. Receive data as a parameter
+1. Receive data as a parameter.
 2. Return an array of objects with the data of the teams that made it to the final stage
 
 hint - you should be looking at the stage key inside of the objects
