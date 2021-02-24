@@ -61,14 +61,11 @@ Use the higher-order function getWinners to do the following:
 4. Returns the names of all winning countries in an array called `winners` */ 
 
 function getWinners(array, getFinalsCB) {
-    // console.log(getFinalsCB(array))
     const winners = getFinalsCB(array).map (function(item) {
-        // return item['Home Team Goals']
         if (item['Home Team Goals'] > item['Away Team Goals']) {
-            return item ['Home Team Name']
-        }
-        else {
-            return item ['Away Team Name']
+            return item['Home Team Name']
+        } else {
+            return item['Away Team Name']
         }
     });
     return winners;
@@ -89,10 +86,10 @@ hint: the strings returned need to exactly match the string in step 4.
  // we need to target the YEAR and the COUNTRY that won - it is ambiguous to any array used. So it needs to take any array given - declare new variables to target YEAR and COUNTRY
 
 function getWinnersByYear(array, getYears, getWinners) { // set up function as per instructions
-    const winningYears = getyears (array, getFinals) // declare winningYears to be the return of the getyears function, with the array and callback for that function
-    const winningTeam = getWinners (array, getFinals) // declare winningTeams to be the return of the getyears function, with the array and callback for that function
-    return winningYears.map (function(item, index) { //.map a NEW ARRAY from the winningYears function - that way the {item} is referencing the year for the string, and the index found within the winningTeam function is put into the {index} spot but has to be cited to the variable of winningTeam, since that is a DIFFERENT function's callback. 
-        return (`In ${item}, ${winningTeam[index]} won the world cup!`)
+    let winningYears = getYears(array, getFinals) // declare winningYears to be the return of the getyears function, with the array and callback for that function
+    let winningTeam = getWinners(array, getFinals) // declare winningTeams to be the return of the getyears function, with the array and callback for that function
+    return winningYears.map(function(item, index) { //.map a NEW ARRAY from the winningYears function - that way the {item} is referencing the year for the string, and the index found within the winningTeam function is put into the {index} spot but has to be cited to the variable of winningTeam, since that is a DIFFERENT function's callback. 
+        return `In ${item}, ${winningTeam[index]} won the world cup!`
     })
 }
 
@@ -109,10 +106,17 @@ Use the higher order function getAverageGoals to do the following:
 */
 
 
-// Accumulator???? - "average number of goals" implies adding up the total, they need to "accumulate"
+// Accumulator???? - "average number of goals" implies adding up the total, they need to "accumulate", be added together, then divide it by the length oo the whole array for the average
 
-function getAverageGoals(getFinals) {
-   /* code here */
+function getAverageGoals(getFinals) { // function that takes the getFinals callback
+   const homeGoals = getFinals.reduce ((acc, item) => { //variable homeGoals is a reduction of getFinals, and then an accumulator function to accumulate the total
+       return acc + item['Home Team Goals'] // return the ACCUMULATION of the {item} of "Home Team Goals" - which is the numerical amount of goals made, and be sure to close the arrow function with a 0 because that is number at which the acculator begins!!!!!
+   },0);  // 0 is where the accumulation starts, don't forget it at the end of the function!
+   const awayGoals = getFinals.reduce ((acc, item) => {
+    return acc + item['Away Team Goals']  // repeat above, but with the away goals.
+   },0);
+return ((homeGoals + awayGoals) / getFinals.length).toFixed(2)
+//return the final result of both sets of goals, add them together (first = PEMDAS) and then divide them by the length of the original array, and round it to the second decimal. 
 }
 
 
