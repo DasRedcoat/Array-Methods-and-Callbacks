@@ -62,12 +62,13 @@ Use the higher-order function getWinners to do the following:
 
 function getWinners(array, getFinalsCB) {
     // console.log(getFinalsCB(array))
-    const winners = getFinalsCB(array).map(function(item) {
+    const winners = getFinalsCB(array).map (function(item) {
         // return item['Home Team Goals']
         if (item['Home Team Goals'] > item['Away Team Goals']) {
-            return item['Home Team Name']
-        } else {
-            return item['Away Team Name']
+            return item ['Home Team Name']
+        }
+        else {
+            return item ['Away Team Name']
         }
     });
     return winners;
@@ -85,8 +86,14 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
+ // we need to target the YEAR and the COUNTRY that won - it is ambiguous to any array used. So it needs to take any array given - declare new variables to target YEAR and COUNTRY
+
+function getWinnersByYear(array, getYears, getWinners) { // set up function as per instructions
+    const winningYears = getyears (array, getFinals) // declare winningYears to be the return of the getyears function, with the array and callback for that function
+    const winningTeam = getWinners (array, getFinals) // declare winningTeams to be the return of the getyears function, with the array and callback for that function
+    return winningYears.map (function(item, index) { //.map a NEW ARRAY from the winningYears function - that way the {item} is referencing the year for the string, and the index found within the winningTeam function is put into the {index} spot but has to be cited to the variable of winningTeam, since that is a DIFFERENT function's callback. 
+        return (`In ${item}, ${winningTeam[index]} won the world cup!`)
+    })
 }
 
 
@@ -101,7 +108,10 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
+
+// Accumulator???? - "average number of goals" implies adding up the total, they need to "accumulate"
+
+function getAverageGoals(getFinals) {
    /* code here */
 }
 
